@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+
 import '../model/nav_route.dart';
-import 'nav_route_page.dart';
+import 'nav_route_screen.dart';
 
 class WayfinderPage extends StatelessWidget {
   const WayfinderPage({Key? key}) : super(key: key);
@@ -72,11 +73,11 @@ class WayfinderPage extends StatelessWidget {
                   ),
                 ),
                 onSuggestionSelected: (suggestion) {
-                  final index = suggestion!.id - 1;
+                  // final index = suggestion!.id - 1;
 
                   Navigator.of(context).push<MaterialPageRoute>(
                     MaterialPageRoute(
-                      builder: (context) => NavRoutePage(id: index),
+                      builder: (context) => NavRoutePage(navRoute: suggestion!),
                     ),
                   );
                 },

@@ -53,32 +53,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0xFF1B1C62),
-          title: const Text('NTU Wayfinder App'),
-        ),
-        // Helps to maintain the state within each screens
-        body: IndexedStack(
-          index: _currentIndex,
-          children: screens,
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          selectedItemColor: Colors.blueAccent,
-          onTap: (index) => setState(() => _currentIndex = index),
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.directions),
-              label: 'Wayfinder',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.local_parking),
-              label: 'Parking',
-            )
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF1B1C62),
+        title: const Text('NTU Wayfinder App'),
+      ),
+      // Helps to maintain the state within each screens
+      body: IndexedStack(
+        index: _currentIndex,
+        children: screens,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        selectedItemColor: Colors.blueAccent,
+        onTap: (index) => setState(() => _currentIndex = index),
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.directions),
+            label: 'Wayfinder',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_parking),
+            label: 'Parking',
+          )
+        ],
       ),
     );
   }

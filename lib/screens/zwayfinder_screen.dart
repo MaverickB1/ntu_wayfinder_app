@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../widgets/search_bar_copy.dart';
 
-class WayfinderPage extends StatelessWidget {
-  const WayfinderPage({Key? key}) : super(key: key);
+class zWayfinderPage extends StatelessWidget {
+  const zWayfinderPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
