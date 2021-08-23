@@ -20,14 +20,14 @@ class NavRoutePage extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: navRoute.navSet.length,
+        itemCount: navRoute.navSteps.length,
         itemBuilder: (context, index) {
           //TODO: I don't understand how the indexing is working correctly here, something seems off but it's still working
-          final navSet = navRoute.navSet[index];
+          final ns = navRoute.navSteps[index];
 
           return Card(
             child: ListTile(
-              title: Text(navSet.instruction),
+              title: Text(ns.instruction),
               leading: Container(
                 width: 60,
                 height: 60,
@@ -37,7 +37,7 @@ class NavRoutePage extends StatelessWidget {
                 // ),
                 child: Center(
                   child: Text(
-                    'Picture ${navSet.step}',
+                    'Picture ${ns.step}',
                   ),
                 ),
               ),

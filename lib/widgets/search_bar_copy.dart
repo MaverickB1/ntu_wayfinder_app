@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../data/nav_route_data.dart';
 import '../model/nav_route.dart';
 
 class SearchBarCopy extends StatelessWidget {
