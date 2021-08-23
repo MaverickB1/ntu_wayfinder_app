@@ -15,25 +15,35 @@ class NavRoutePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF1B1C62),
-        title: const Text(
-          'Return to Wayfinder Page',
-          // nr[id].id.toString(),
+        title: Text(
+          '${navRoute.start} to ${navRoute.destination}',
         ),
       ),
-      body: ListView(
-        children: [
-          // Image.network(
-          //   user.imageUrl,
-          //   height: 300,
-          //   fit: BoxFit.cover,
-          // ),
-          const SizedBox(height: 16),
-          Text(
-            '${navRoute.start} to ${navRoute.destination}',
-            style: const TextStyle(fontSize: 28),
-            textAlign: TextAlign.center,
-          ),
-        ],
+      body: ListView.builder(
+        itemCount: navRoute.navSet.length,
+        itemBuilder: (context, index) {
+          //TODO: I don't understand how the indexing is working correctly here, something seems off but it's still working
+          final navSet = navRoute.navSet[index];
+
+          return Card(
+            child: ListTile(
+              title: Text(navSet.instruction),
+              leading: Container(
+                width: 60,
+                height: 60,
+                //   child: Image.network(
+                //   user.imageUrl,
+                //   fit: BoxFit.cover,
+                // ),
+                child: Center(
+                  child: Text(
+                    'Picture ${navSet.step}',
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

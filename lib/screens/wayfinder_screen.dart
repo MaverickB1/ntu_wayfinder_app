@@ -54,8 +54,14 @@ class WayfinderPage extends StatelessWidget {
                     leading: Container(
                       width: 60,
                       height: 60,
-                      child: Text(
-                        nr.id.toString(),
+                      //   child: Image.network(
+                      //   user.imageUrl,
+                      //   fit: BoxFit.cover,
+                      // ),
+                      child: Center(
+                        child: Text(
+                          nr.id.toString(),
+                        ),
                       ),
                     ),
                     title: Text(
@@ -73,11 +79,11 @@ class WayfinderPage extends StatelessWidget {
                   ),
                 ),
                 onSuggestionSelected: (suggestion) {
-                  // final index = suggestion!.id - 1;
+                  final nr = suggestion!;
 
                   Navigator.of(context).push<MaterialPageRoute>(
                     MaterialPageRoute(
-                      builder: (context) => NavRoutePage(navRoute: suggestion!),
+                      builder: (context) => NavRoutePage(navRoute: nr),
                     ),
                   );
                 },
