@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/nav_route.dart';
+import 'nav_step_screen.dart';
 
 class NavRoutePage extends StatelessWidget {
   const NavRoutePage({
@@ -22,12 +23,11 @@ class NavRoutePage extends StatelessWidget {
       body: ListView.builder(
         itemCount: navRoute.navSteps.length,
         itemBuilder: (context, index) {
-          //TODO: I don't understand how the indexing is working correctly here, something seems off but it's still working
           final ns = navRoute.navSteps[index];
+          //TODO: Retrive the collection from Firestore instead
 
           return Card(
             child: ListTile(
-              title: Text(ns.instruction),
               leading: Container(
                 width: 60,
                 height: 60,
@@ -41,6 +41,17 @@ class NavRoutePage extends StatelessWidget {
                   ),
                 ),
               ),
+              title: Text('Checkpoint ${ns.step}'),
+              subtitle: Text(ns.instruction),
+              isThreeLine: true,
+              trailing: const Icon(Icons.arrow_forward_rounded),
+              onTap: () {
+                Navigator.of(context).push<MaterialPageRoute>(
+                  MaterialPageRoute(
+                    builder: (context) => NavStepPage(navStep: ns),
+                  ),
+                );
+              },
             ),
           );
         },
