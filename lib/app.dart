@@ -2,8 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
-import 'screens/carpark_screen.dart';
-import 'screens/wayfinder_screen.dart';
+import 'screens/homepage.dart';
 
 class App extends StatelessWidget {
   // This widget is the root of the application.
@@ -13,6 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'NTU Wayfinder',
       theme: ThemeData(
         fontFamily: 'Cairo',
@@ -34,49 +34,6 @@ class App extends StatelessWidget {
             );
           }
         },
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 0;
-  final screens = [
-    const WayfinderPage(),
-    const CarparkPage(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF1B1C62),
-        title: const Text('NTU Wayfinder App'),
-      ),
-      // Helps to maintain the state within each screens
-      body: IndexedStack(
-        index: _currentIndex,
-        children: screens,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        selectedItemColor: Colors.blueAccent,
-        onTap: (index) => setState(() => _currentIndex = index),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.directions),
-            label: 'Wayfinder',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_parking),
-            label: 'Parking',
-          )
-        ],
       ),
     );
   }

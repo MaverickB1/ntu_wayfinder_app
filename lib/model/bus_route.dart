@@ -1,16 +1,16 @@
-import 'nav_step.dart';
+import 'bus_stop.dart';
 
-class NavRoute {
-  NavRoute(
+class BusRoute {
+  BusRoute(
       {required this.locationStart,
       required this.locationEnd,
       required this.routeId,
-      required this.navSteps});
+      required this.busStops});
 
   final String locationStart;
   final String locationEnd;
   final int routeId;
-  final List<NavStep> navSteps;
+  final List<BusStop> busStops;
 
   // static List<NavRoute> getNavRouteSuggestions(String query) =>
   //     List.of(navRoutes).where((navRoute) {
@@ -20,24 +20,23 @@ class NavRoute {
   //       return navRouteLower.contains(queryLower);
   //     }).toList();
 
-  static List<NavRoute> getFirestoreNavRouteSuggestions(
-          {required String query, required List<NavRoute> data}) =>
-      List.of(data).where((navRoute) {
-        final navRouteLower = navRoute.locationStart.toLowerCase();
-        final queryLower = query.toLowerCase();
+  static List<BusRoute> getFirestoreBusRouteSuggestions(
+          {required String query, required List<BusRoute> data}) =>
+      List.of(data).where((busRoute) {
+        final busRouteLower = busRoute.locationStart.toLowerCase();
 
-        return navRouteLower.contains(queryLower);
+        return busRouteLower.contains(query.toLowerCase());
       }).toList();
 
-  factory NavRoute.fromJson(Map<String, dynamic> jsonData) {
-    final jsonNavStep = jsonData['navSteps'] as List;
-    final navStepList = jsonNavStep.map((e) => NavStep.fromJson(e)).toList();
+  factory BusRoute.fromJson(Map<String, dynamic> jsonData) {
+    final jsonBusStop = jsonData['busStops'] as List;
+    final busStopList = jsonBusStop.map((e) => BusStop.fromJson(e)).toList();
 
-    return NavRoute(
+    return BusRoute(
       locationStart: jsonData['locationStart'] as String,
       locationEnd: jsonData['locationEnd'] as String,
       routeId: jsonData['routeId'] as int,
-      navSteps: navStepList,
+      busStops: busStopList,
     );
   }
 
@@ -45,6 +44,6 @@ class NavRoute {
         'locationStart': locationStart,
         'locationEnd': locationEnd,
         'routeId': routeId,
-        'navSteps': navSteps.map((e) => e.toJson()).toList(),
+        'busStops': busStops.map((e) => e.toJson()).toList(),
       };
 }
