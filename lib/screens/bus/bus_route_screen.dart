@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ntu_wayfinder_app/constants.dart';
+import 'package:ntu_wayfinder_app/screens/bus/bus_stop_screen.dart';
+import 'package:ntu_wayfinder_app/services/map_util.dart';
 
 import '../../model/bus_route.dart';
 import '../homepage.dart';
@@ -31,12 +34,13 @@ class _BusRoutePageState extends State<BusRoutePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1B1C62),
+        backgroundColor: kAppBarBackgroundColor,
         title: Text(
-          '${widget.busRoute.locationStart} to ${widget.busRoute.locationEnd}',
+          '${widget.busRoute.service} Line from ${widget.busRoute.locationStart} to ${widget.busRoute.locationEnd}',
+          style: kAppBarTitleTextStyle,
         ),
       ),
-      body: Stack(
+      body: Column(
         children: [
           ValueListenableBuilder(
               valueListenable: tracker,
@@ -56,64 +60,76 @@ class _BusRoutePageState extends State<BusRoutePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MyHomePage(),
+                      builder: (context) => NavStartPage(),
                     ),
                   );
                 }
 
                 return Container();
               }),
-          ListView.builder(
-            itemCount: widget.busRoute.busStops.length,
-            itemBuilder: (context, index) {
-              //TODO: Retrive the collection from Firestore instead
+          Image.asset(widget.busRoute.busStops[0].stopImage),
+          Expanded(
+            child: ListView.builder(
+              itemCount: widget.busRoute.busStops.length,
+              itemBuilder: (context, index) {
+                final bs = widget.busRoute.busStops[index];
+                final checkpointNumber = index + 1;
 
-              final bs = widget.busRoute.busStops[index];
+                return Card(
+                  child: ListTile(
+                    leading: Image.asset(bs.stopImage),
+                    title: Text(
+                      'Checkpoint $checkpointNumber',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(bs.stopName),
+                    isThreeLine: true,
+                    trailing: tracker.value[index]
+                        ? const Icon(
+                            Icons.done,
+                            color: Colors.green,
+                          )
+                        : const Icon(Icons.arrow_forward_rounded),
+                    onTap: () async {
+                      final checkboxValue = await Navigator.push(
+                        context,
+                        MaterialPageRoute<bool>(
+                          builder: (context) => BusStopPage(
+                            busStop: bs,
+                            localIndex: checkpointNumber,
+                          ),
+                        ),
+                      );
 
-              return Card(
-                child: ListTile(
-                  title: Text('Checkpoint ${index + 1}'),
-                  subtitle: Text(bs.stopId.toString()),
-                  isThreeLine: true,
-                  trailing: tracker.value[index]
-                      ? const Icon(
-                          Icons.done,
-                          color: Colors.green,
-                        )
-                      : const Icon(Icons.arrow_forward_rounded),
-                  // onTap: () async {
-                  //   final checkboxValue = await Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute<bool>(
-                  //       builder: (context) => NavStepPage(navStep: ns),
-                  //     ),
-                  //   );
-
-                  //   if (checkboxValue == true) {
-                  //     setState(() {
-                  //       tracker.value[index] = true;
-                  //       tracker.notifyListeners();
-                  //     });
-                  //   }
-                  // },
-                ),
-              );
-            },
+                      if (checkboxValue == true) {
+                        setState(() {
+                          tracker.value[index] = true;
+                          tracker.notifyListeners();
+                        });
+                      }
+                    },
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const NavStartPage(),
-            ),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => const NavStartPage(),
+          //   ),
+          // );
+          MapUtil.openMap(widget.busRoute.mapLaunchUrl);
         },
-        label: const Text('I have arrived!'),
-        icon: const Icon(Icons.thumb_up),
-        backgroundColor: Colors.pink,
+        label: Text('Get me to ${widget.busRoute.locationStart} bus stop'),
+        icon: const Icon(Icons.bus_alert),
+        backgroundColor: kButtonBackgroundColor,
       ),
     );
   }

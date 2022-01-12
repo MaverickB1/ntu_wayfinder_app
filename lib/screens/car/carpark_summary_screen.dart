@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ntu_wayfinder_app/constants.dart';
 
 import '../../model/destination.dart';
 import '../../services/map_util.dart';
@@ -22,17 +23,15 @@ class _CarparkSummaryPageState extends State<CarparkSummaryPage> {
     return Scaffold(
       appBar: AppBar(
         // shape: const Border(bottom: BorderSide(width: 4)),
-        backgroundColor: const Color(0xFF0054A6),
+        backgroundColor: kAppBarBackgroundColor,
         title: Text(
           widget.destination.label,
-          style: const TextStyle(
-            color: Colors.white,
-          ),
+          style: kAppBarTitleTextStyle,
         ),
       ),
       body: Column(
         children: [
-          Image.network(widget.destination.destinationImage),
+          Image.asset(widget.destination.destinationImage),
           ListView.builder(
             shrinkWrap: true,
             itemCount: widget.destination.carparks.length,
@@ -45,7 +44,7 @@ class _CarparkSummaryPageState extends State<CarparkSummaryPage> {
                     child: Container(
                       height: 80,
                       width: 80,
-                      child: Image.network(cp.carparkImage),
+                      child: Image.asset(cp.carparkImage),
                     ),
                   ),
                   title: Text(
@@ -78,7 +77,7 @@ class _CarparkSummaryPageState extends State<CarparkSummaryPage> {
         },
         label: const Text('I have arrived!'),
         icon: const Icon(Icons.thumb_up),
-        backgroundColor: Colors.pink,
+        backgroundColor: kButtonBackgroundColor,
       ),
     );
   }

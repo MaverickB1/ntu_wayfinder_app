@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:ntu_wayfinder_app/constants.dart';
 
 import '../../model/bus_start.dart';
 import '../../services/database.dart';
@@ -15,20 +16,18 @@ class BusStartPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         // shape: const Border(bottom: BorderSide(width: 4)),
-        backgroundColor: const Color(0xFF0054A6),
+        backgroundColor: kAppBarBackgroundColor,
         title: const Text(
           'NTU Wayfinder',
-          style: TextStyle(
-            color: Colors.white,
-          ),
+          style: kAppBarTitleTextStyle,
         ),
       ),
-      backgroundColor: const Color(0xFF1B1C62),
+      backgroundColor: kScreenBackgroundColor,
       body: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(32, 300, 32, 0),
-            child: SvgPicture.asset('assets/images/indoor_navigation_bg.svg',
+            padding: const EdgeInsets.fromLTRB(32, 360, 32, 0),
+            child: SvgPicture.asset('assets/images/bus_stop_bg.svg',
                 alignment: Alignment.topCenter,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height),
@@ -37,12 +36,7 @@ class BusStartPage extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(32, 32, 32, 0),
             child: Text(
               'Shuttle Bus Navigation \n(Start)',
-              style: TextStyle(
-                color: Color(0xFFFFFFFF),
-                fontSize: 32,
-                fontFamily: 'Cairo',
-                fontWeight: FontWeight.bold,
-              ),
+              style: kScreenTitleTextStyle,
             ),
           ),
           Padding(
@@ -71,20 +65,6 @@ class BusStartPage extends StatelessWidget {
                           final bs = suggestion!;
 
                           return ListTile(
-                            //TODO: add image url
-                            // leading: Container(
-                            //   width: 60,
-                            //   height: 60,
-                            //   //   child: Image.network(
-                            //   //   user.imageUrl,
-                            //   //   fit: BoxFit.cover,
-                            //   // ),
-                            //   child: Center(
-                            //     child: Text(
-                            //       ns.routeId.toString(),
-                            //     ),
-                            //   ),
-                            // ),
                             title: Text(
                               bs.locationName,
                             ),

@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../constants.dart';
 
-import '../data/bus_route_data.dart';
-import '../data/bus_start_data.dart';
-import '../data/destination_data.dart';
-import '../data/nav_route_data.dart';
-import '../data/nav_start_data.dart';
+import '../data/bus/bus_route_data.dart';
+import '../data/bus/bus_start_data.dart';
+import '../data/car/destination_data.dart';
+import '../data/indoor/nav_route_data.dart';
+import '../data/indoor/nav_start_data.dart';
 import 'bus/bus_start_screen.dart';
 import 'car/car_screen.dart';
 
@@ -18,12 +19,10 @@ class TransportModePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         // shape: const Border(bottom: BorderSide(width: 4)),
-        backgroundColor: const Color(0xFF0054A6),
+        backgroundColor: kAppBarBackgroundColor,
         title: const Text(
           'NTU Wayfinder',
-          style: TextStyle(
-            color: Colors.white,
-          ),
+          style: kAppBarTitleTextStyle,
         ),
         actions: <Widget>[
           TextButton(
@@ -75,11 +74,11 @@ class TransportModePage extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: const Color(0xFF1B1C62),
+      backgroundColor: kScreenBackgroundColor,
       body: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(32, 360, 32, 0),
+            padding: const EdgeInsets.fromLTRB(32, 300, 32, 0),
             child: SvgPicture.asset('assets/images/transport_mode_bg.svg',
                 alignment: Alignment.topCenter,
                 width: MediaQuery.of(context).size.width,
@@ -88,13 +87,8 @@ class TransportModePage extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.fromLTRB(32, 32, 32, 0),
             child: Text(
-              'Mode of Transport',
-              style: TextStyle(
-                color: Color(0xFFFFFFFF),
-                fontSize: 32,
-                fontFamily: 'Cairo',
-                fontWeight: FontWeight.bold,
-              ),
+              'Transport Mode',
+              style: kScreenTitleTextStyle,
             ),
           ),
           Padding(

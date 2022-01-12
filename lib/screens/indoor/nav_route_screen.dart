@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
 import '../../model/nav_route.dart';
 import '../homepage.dart';
 import 'nav_step_screen.dart';
@@ -31,12 +32,12 @@ class _NavRoutePageState extends State<NavRoutePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1B1C62),
+        backgroundColor: kAppBarBackgroundColor,
         title: Text(
           '${widget.navRoute.locationStart} to ${widget.navRoute.locationEnd}',
         ),
       ),
-      body: Stack(
+      body: Column(
         children: [
           ValueListenableBuilder(
               valueListenable: tracker,
@@ -63,48 +64,50 @@ class _NavRoutePageState extends State<NavRoutePage> {
 
                 return Container();
               }),
-          ListView.builder(
-            itemCount: widget.navRoute.navSteps.length,
-            itemBuilder: (context, index) {
-              //TODO: Retrive the collection from Firestore instead
+          Expanded(
+            child: ListView.builder(
+              itemCount: widget.navRoute.navSteps.length,
+              itemBuilder: (context, index) {
+                //TODO: Retrive the collection from Firestore instead
 
-              final ns = widget.navRoute.navSteps[index];
-              final cpIndex = index + 1;
+                final ns = widget.navRoute.navSteps[index];
+                final checkpointNumber = index + 1;
 
-              return Card(
-                child: ListTile(
-                  leading: Image.network(ns.imageUrl),
-                  title: Text(
-                    'Checkpoint $cpIndex',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                return Card(
+                  child: ListTile(
+                    leading: Image.asset(ns.imageUrl),
+                    title: Text(
+                      'Checkpoint $checkpointNumber',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(ns.instruction),
+                    isThreeLine: true,
+                    trailing: tracker.value[index]
+                        ? const Icon(
+                            Icons.done,
+                            color: Colors.green,
+                          )
+                        : const Icon(Icons.arrow_forward_rounded),
+                    onTap: () async {
+                      final checkboxValue = await Navigator.push(
+                        context,
+                        MaterialPageRoute<bool>(
+                          builder: (context) => NavStepPage(
+                              navStep: ns, localIndex: checkpointNumber),
+                        ),
+                      );
+
+                      if (checkboxValue == true) {
+                        setState(() {
+                          tracker.value[index] = true;
+                          tracker.notifyListeners();
+                        });
+                      }
+                    },
                   ),
-                  subtitle: Text(ns.instruction),
-                  isThreeLine: true,
-                  trailing: tracker.value[index]
-                      ? const Icon(
-                          Icons.done,
-                          color: Colors.green,
-                        )
-                      : const Icon(Icons.arrow_forward_rounded),
-                  onTap: () async {
-                    final checkboxValue = await Navigator.push(
-                      context,
-                      MaterialPageRoute<bool>(
-                        builder: (context) =>
-                            NavStepPage(navStep: ns, localIndex: cpIndex),
-                      ),
-                    );
-
-                    if (checkboxValue == true) {
-                      setState(() {
-                        tracker.value[index] = true;
-                        tracker.notifyListeners();
-                      });
-                    }
-                  },
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ],
       ),

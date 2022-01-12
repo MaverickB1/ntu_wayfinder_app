@@ -1,4 +1,5 @@
-import '../data/destination_data.dart';
+import '../data/car/destination_data.dart';
+
 import 'carpark.dart';
 
 class Destination {

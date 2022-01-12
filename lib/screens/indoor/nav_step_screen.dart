@@ -27,7 +27,7 @@ class _NavStepPageState extends State<NavStepPage> {
       body: Column(
         children: [
           Container(
-            child: Image.network(ns.imageUrl),
+            child: Image.asset(ns.imageUrl),
           ),
           Container(
             alignment: Alignment.bottomCenter,

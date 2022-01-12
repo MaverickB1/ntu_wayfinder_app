@@ -1,20 +1,28 @@
 class BusStop {
   BusStop(
       {required this.stopId,
-      required this.imageUrl});
+      required this.stopImage,
+      required this.stopName,
+      required this.travelDuration});
 
   final int stopId;
-  final String imageUrl;
+  final String stopImage;
+  final String stopName;
+  final int travelDuration;
 
   factory BusStop.fromJson(Map<String, dynamic> jsonData) {
     return BusStop(
       stopId: jsonData['stopId'] as int,
-      imageUrl: jsonData['imageUrl'] as String,
+      stopImage: jsonData['stopImage'] as String,
+      stopName: jsonData['stopName'] as String,
+      travelDuration: jsonData['travelDuration'] as int,
     );
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'stopId': stopId,
-        'imageUrl': imageUrl,
+        'stopImage': stopImage,
+        'stopName': stopName,
+        'travelDuration': travelDuration,
       };
 }

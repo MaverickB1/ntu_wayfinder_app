@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:ntu_wayfinder_app/constants.dart';
 
 import '../../model/bus_route.dart';
 import '../../model/bus_start.dart';
@@ -24,20 +25,18 @@ class _BusDestinationPageState extends State<BusDestinationPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         // shape: const Border(bottom: BorderSide(width: 4)),
-        backgroundColor: const Color(0xFF0054A6),
+        backgroundColor: kAppBarBackgroundColor,
         title: const Text(
           'NTU Wayfinder',
-          style: TextStyle(
-            color: Colors.white,
-          ),
+          style: kAppBarTitleTextStyle,
         ),
       ),
-      backgroundColor: const Color(0xFF1B1C62),
+      backgroundColor: const Color(0xFFD71440),
       body: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(32, 300, 32, 0),
-            child: SvgPicture.asset('assets/images/indoor_navigation_bg.svg',
+            padding: const EdgeInsets.fromLTRB(32, 360, 32, 0),
+            child: SvgPicture.asset('assets/images/bus_stop_bg.svg',
                 alignment: Alignment.topCenter,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height),
@@ -46,12 +45,7 @@ class _BusDestinationPageState extends State<BusDestinationPage> {
             padding: EdgeInsets.fromLTRB(32, 32, 32, 0),
             child: Text(
               'Shuttle Bus Navigation \n(Destination)',
-              style: TextStyle(
-                color: Color(0xFFFFFFFF),
-                fontSize: 32,
-                fontFamily: 'Cairo',
-                fontWeight: FontWeight.bold,
-              ),
+              style: kScreenTitleTextStyle,
             ),
           ),
           Padding(
