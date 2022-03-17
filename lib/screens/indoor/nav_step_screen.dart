@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+
 import '../../model/nav_step.dart';
+import '../home_screen.dart';
 
 class NavStepPage extends StatefulWidget {
-  const NavStepPage({Key? key, required this.navStep, required this.localIndex})
+  const NavStepPage(
+      {Key? key,
+      required this.finalStep,
+      required this.navStep,
+      required this.localIndex})
       : super(key: key);
 
   final NavStep navStep;
   final int localIndex;
+  final bool finalStep;
 
   @override
   _NavStepPageState createState() => _NavStepPageState();
@@ -27,7 +34,7 @@ class _NavStepPageState extends State<NavStepPage> {
       body: Column(
         children: [
           Container(
-            child: Image.asset(ns.imageUrl),
+            child: Image.network(ns.imageUrl),
           ),
           Container(
             alignment: Alignment.bottomCenter,
@@ -39,9 +46,15 @@ class _NavStepPageState extends State<NavStepPage> {
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context, true);
+              if (widget.finalStep) {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => MyHomePage(currentIndex: 1)),
+                    (Route<dynamic> route) => false);
+              }
             },
-            child: const Text('Next Step'),
-          )
+            child: Text(widget.finalStep ? 'Complete' : 'Next Step'),
+          ),
         ],
       ),
     );

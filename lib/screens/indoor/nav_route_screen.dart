@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../model/nav_route.dart';
-import '../homepage.dart';
 import 'nav_step_screen.dart';
 
 class NavRoutePage extends StatefulWidget {
@@ -54,12 +53,21 @@ class _NavRoutePageState extends State<NavRoutePage> {
 
                 if (count == trackerListen.length) {
                   print('Run here 2');
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyHomePage(),
-                    ),
-                  );
+
+                  // setState(() {
+                  // _navigateToHome = true;
+                  // });
+
+                  // Navigator.of(context).pushAndRemoveUntil(
+                  //     MaterialPageRoute(builder: (context) => App()),
+                  //     (Route<dynamic> route) => false);
+
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => MyHomePage(),
+                  //   ),
+                  // );
                 }
 
                 return Container();
@@ -68,14 +76,12 @@ class _NavRoutePageState extends State<NavRoutePage> {
             child: ListView.builder(
               itemCount: widget.navRoute.navSteps.length,
               itemBuilder: (context, index) {
-                //TODO: Retrive the collection from Firestore instead
-
                 final ns = widget.navRoute.navSteps[index];
                 final checkpointNumber = index + 1;
 
                 return Card(
                   child: ListTile(
-                    leading: Image.asset(ns.imageUrl),
+                    leading: Image.network(ns.imageUrl),
                     title: Text(
                       'Checkpoint $checkpointNumber',
                       style: const TextStyle(fontWeight: FontWeight.bold),
@@ -93,7 +99,12 @@ class _NavRoutePageState extends State<NavRoutePage> {
                         context,
                         MaterialPageRoute<bool>(
                           builder: (context) => NavStepPage(
-                              navStep: ns, localIndex: checkpointNumber),
+                              finalStep: checkpointNumber >=
+                                      widget.navRoute.navSteps.length
+                                  ? true
+                                  : false,
+                              navStep: ns,
+                              localIndex: checkpointNumber),
                         ),
                       );
 

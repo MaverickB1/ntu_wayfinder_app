@@ -1,18 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ntu_wayfinder_app/model/bus_route.dart';
-import 'package:ntu_wayfinder_app/model/bus_start.dart';
 
+import '../model/bus_route.dart';
+import '../model/bus_start.dart';
 import '../model/destination.dart';
 import '../model/nav_route.dart';
 import '../model/nav_start.dart';
 
 class Database {
-  // final _firestore = FirebaseFirestore.instance;
-
   static Future<List<Destination>> getDestinationList() async {
     final destinationsCoRef =
         FirebaseFirestore.instance.collection('destinations');
-    //dot operator takes precedence over await method
     final destinationsQSnapshot = await destinationsCoRef.get();
     final destinationsQDocSnapshot = destinationsQSnapshot.docs;
     final destinations = List<Destination>.empty(growable: true);
@@ -28,30 +25,25 @@ class Database {
   static Future<List<NavRoute>> getNavRouteList(
       {required NavStart navStart}) async {
     final navRoutesCoRef = FirebaseFirestore.instance.collection('navRoutes');
-    //dot operator takes precedence over await method
     final navRoutesQSnapshot = await navRoutesCoRef.get();
     final navRoutesQDocSnapshot = navRoutesQSnapshot.docs;
     final navRoutes = List<NavRoute>.empty(growable: true);
 
     navRoutesQDocSnapshot.forEach((doc) {
-      print('locationName: ${navStart.locationName}');
-
       final navRoute = NavRoute.fromJson(doc.data());
 
-      print('locationStart: ${navRoute.locationStart}');
-
-      if (navStart.locationName.contains(navRoute.locationStart)) {
-        print('run here');
+      if (navRoute.locationStart.contains(navStart.locationName)) {
         navRoutes.add(navRoute);
       }
+      // if (navStart.locationName.contains(navRoute.locationStart)) {
+      //   navRoutes.add(navRoute);
+      // }
     });
-
     return navRoutes;
   }
 
   static Future<List<NavStart>> getNavStartList() async {
     final navStartCoRef = FirebaseFirestore.instance.collection('navStarts');
-    //dot operator takes precedence over await method
     final navStartQSnapshot = await navStartCoRef.get();
     final navStartQDocSnapshot = navStartQSnapshot.docs;
     final navStarts = List<NavStart>.empty(growable: true);

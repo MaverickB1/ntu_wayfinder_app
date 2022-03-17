@@ -77,10 +77,6 @@ class _BusDestinationPageState extends State<BusDestinationPage> {
                             leading: Container(
                               width: 60,
                               height: 60,
-                              //   child: Image.network(
-                              //   user.imageUrl,
-                              //   fit: BoxFit.cover,
-                              // ),
                               child: Center(
                                 child: Text(
                                   br.routeId.toString(),

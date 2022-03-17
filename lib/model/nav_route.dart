@@ -12,14 +12,6 @@ class NavRoute {
   final int routeId;
   final List<NavStep> navSteps;
 
-  // static List<NavRoute> getNavRouteSuggestions(String query) =>
-  //     List.of(navRoutes).where((navRoute) {
-  //       final navRouteLower = navRoute.locationStart.toLowerCase();
-  //       final queryLower = query.toLowerCase();
-
-  //       return navRouteLower.contains(queryLower);
-  //     }).toList();
-
   static List<NavRoute> getFirestoreNavRouteSuggestions(
           {required String query, required List<NavRoute> data}) =>
       List.of(data).where((navRoute) {

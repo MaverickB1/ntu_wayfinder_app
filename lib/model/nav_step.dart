@@ -5,7 +5,7 @@ class NavStep {
       required this.instruction});
 
   final int stepId;
-  final String imageUrl;
+  String imageUrl;
   final String instruction;
 
   factory NavStep.fromJson(Map<String, dynamic> jsonData) {

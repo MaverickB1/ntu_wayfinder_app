@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
-import 'screens/homepage.dart';
+import 'screens/home_screen.dart';
 
 class App extends StatelessWidget {
   // This widget is the root of the application.

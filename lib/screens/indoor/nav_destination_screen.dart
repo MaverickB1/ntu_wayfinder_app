@@ -74,6 +74,11 @@ class _NavDestinationPageState extends State<NavDestinationPage> {
                           final nr = suggestion!;
 
                           return ListTile(
+                            leading: Container(
+                              width: 60,
+                              height: 60,
+                              child: Image.network(nr.navSteps.last.imageUrl),
+                            ),
                             title: Text(
                               nr.locationEnd,
                             ),

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ntu_wayfinder_app/constants.dart';
 
+import '../../constants.dart';
 import '../../model/destination.dart';
 import '../../services/map_util.dart';
-import '../indoor/nav_start_screen.dart';
+import '../home_screen.dart';
+// import 'package:ntu_wayfinder_app/constants.dart';
+// import 'package:ntu_wayfinder_app/screens/home_screen.dart';
+
+// import '../../model/destination.dart';
+// import '../../services/map_util.dart';
+// import '../indoor/nav_start_screen.dart';
 
 class CarparkSummaryPage extends StatefulWidget {
   const CarparkSummaryPage({
@@ -41,11 +47,8 @@ class _CarparkSummaryPageState extends State<CarparkSummaryPage> {
               return Card(
                 child: ListTile(
                   leading: ClipRRect(
-                    child: Container(
-                      height: 80,
-                      width: 80,
-                      child: Image.asset(cp.carparkImage),
-                    ),
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(cp.carparkImage),
                   ),
                   title: Text(
                     index == 0
@@ -54,7 +57,7 @@ class _CarparkSummaryPageState extends State<CarparkSummaryPage> {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                      'Operation: ${cp.opsInfo}\nHourly Charge: \$${cp.hourCost}'),
+                      'Hourly Charge: \$${cp.hourCost}\nOperation: ${cp.opsInfo}'),
                   isThreeLine: true,
                   trailing: const Icon(Icons.arrow_forward_rounded),
                   onTap: () {
@@ -71,7 +74,9 @@ class _CarparkSummaryPageState extends State<CarparkSummaryPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const NavStartPage(),
+              builder: (context) => MyHomePage(
+                currentIndex: 1,
+              ),
             ),
           );
         },

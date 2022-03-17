@@ -6,14 +6,14 @@ class BusRoute {
     required this.locationEnd,
     required this.routeId,
     required this.busStops,
-    required this.service,
+    required this.serviceIsRed,
     required this.mapLaunchUrl,
   });
 
   final String locationStart;
   final String locationEnd;
   final int routeId;
-  final String service;
+  final bool serviceIsRed;
   final String mapLaunchUrl;
   final List<BusStop> busStops;
 
@@ -41,7 +41,7 @@ class BusRoute {
       locationStart: jsonData['locationStart'] as String,
       locationEnd: jsonData['locationEnd'] as String,
       routeId: jsonData['routeId'] as int,
-      service: jsonData['service'] as String,
+      serviceIsRed: jsonData['serviceIsRed'] as bool,
       mapLaunchUrl: jsonData['mapLaunchUrl'] as String,
       busStops: busStopList,
     );
@@ -51,7 +51,7 @@ class BusRoute {
         'locationStart': locationStart,
         'locationEnd': locationEnd,
         'routeId': routeId,
-        'service': service,
+        'serviceIsRed': serviceIsRed,
         'mapLaunchUrl': mapLaunchUrl,
         'busStops': busStops.map((e) => e.toJson()).toList(),
       };

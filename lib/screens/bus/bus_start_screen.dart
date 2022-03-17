@@ -18,7 +18,7 @@ class BusStartPage extends StatelessWidget {
         // shape: const Border(bottom: BorderSide(width: 4)),
         backgroundColor: kAppBarBackgroundColor,
         title: const Text(
-          'NTU Wayfinder',
+          'Travel by Shuttle Bus',
           style: kAppBarTitleTextStyle,
         ),
       ),

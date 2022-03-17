@@ -7,7 +7,7 @@ List<BusRoute> busRoutes = [
       routeId: 1,
       locationStart: 'Hall 1',
       locationEnd: 'North Spine',
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/9JG2ixJM6xB9gTZz8',
       busStops: [
         busStops[5],
@@ -36,14 +36,14 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/DiisSSr9LYJFyxfF7'),
   BusRoute(
       locationStart: 'Hall 3',
       locationEnd: 'North Spine',
       routeId: 3,
       busStops: [],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'Please walk over'),
   BusRoute(
       locationStart: 'Hall 4',
@@ -60,7 +60,7 @@ List<BusRoute> busRoutes = [
         busStops[28],
         busStops[29],
       ],
-      service: 'Blue',
+      serviceIsRed: false,
       mapLaunchUrl: 'https://goo.gl/maps/pomZ8whYm92HrbYx8'),
   BusRoute(
       locationStart: 'Hall 5',
@@ -77,7 +77,7 @@ List<BusRoute> busRoutes = [
         busStops[28],
         busStops[29],
       ],
-      service: 'Blue',
+      serviceIsRed: false,
       mapLaunchUrl: 'https://goo.gl/maps/pomZ8whYm92HrbYx8'),
   BusRoute(
       locationStart: 'Hall 6',
@@ -95,7 +95,7 @@ List<BusRoute> busRoutes = [
         busStops[28],
         busStops[29],
       ],
-      service: 'Blue',
+      serviceIsRed: false,
       mapLaunchUrl: 'https://goo.gl/maps/o1UHQEErYKkXvbVn6'),
   BusRoute(
       locationStart: 'Hall 7',
@@ -110,7 +110,7 @@ List<BusRoute> busRoutes = [
         busStops[28],
         busStops[29],
       ],
-      service: 'Blue',
+      serviceIsRed: false,
       mapLaunchUrl: 'https://goo.gl/maps/yJzcyQgDmzNGo27e9'),
   BusRoute(
       locationStart: 'Hall 8',
@@ -126,7 +126,7 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/yTSgvvEuHceoHrcXA'),
   BusRoute(
       locationStart: 'Hall 9',
@@ -142,7 +142,7 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/yTSgvvEuHceoHrcXA'),
   BusRoute(
       locationStart: 'Hall 10',
@@ -157,7 +157,7 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/py3mFB2c2T1Yfip18'),
   BusRoute(
       locationStart: 'Hall 11',
@@ -172,7 +172,7 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/py3mFB2c2T1Yfip18'),
   BusRoute(
       locationStart: 'Hall 12',
@@ -184,7 +184,7 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/YXGvCLwUijJPpmdg9'),
   BusRoute(
       locationStart: 'Hall 13',
@@ -196,7 +196,7 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/YXGvCLwUijJPpmdg9'),
   BusRoute(
       locationStart: 'Hall 14',
@@ -208,7 +208,7 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/YXGvCLwUijJPpmdg9'),
   BusRoute(
       locationStart: 'Hall 15',
@@ -221,14 +221,14 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/APR59X68EkFaCF387'),
   BusRoute(
       locationStart: 'Hall 16',
       locationEnd: 'North Spine',
       routeId: 16,
       busStops: [],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'Please walk over'),
   BusRoute(
       locationStart: 'Crespion',
@@ -246,7 +246,7 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/9JG2ixJM6xB9gTZz8'),
   BusRoute(
       locationStart: 'North Hill',
@@ -261,7 +261,7 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/py3mFB2c2T1Yfip18'),
   BusRoute(
       locationStart: 'Nanyang Cresent',
@@ -274,6 +274,6 @@ List<BusRoute> busRoutes = [
         busStops[25],
         busStops[26],
       ],
-      service: 'Red',
+      serviceIsRed: true,
       mapLaunchUrl: 'https://goo.gl/maps/APR59X68EkFaCF387'),
 ];

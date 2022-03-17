@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:ntu_wayfinder_app/model/bus_stop.dart';
-import '../../model/nav_step.dart';
+
+import '../../model/bus_stop.dart';
+import '../home_screen.dart';
+
+// import 'package:ntu_wayfinder_app/model/bus_stop.dart';
+// import '../../model/nav_step.dart';
+// import '../home_screen.dart';
 
 class BusStopPage extends StatefulWidget {
-  const BusStopPage({Key? key, required this.busStop, required this.localIndex})
+  const BusStopPage(
+      {Key? key,
+      required this.finalStep,
+      required this.busStop,
+      required this.localIndex})
       : super(key: key);
 
   final BusStop busStop;
   final int localIndex;
+  final bool finalStep;
 
   @override
   _BusStopPageState createState() => _BusStopPageState();
@@ -30,19 +40,25 @@ class _BusStopPageState extends State<BusStopPage> {
           Container(
             child: Image.asset(bs.stopImage),
           ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            child: const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text('nil'),
-            ),
-          ),
+          // Container(
+          //   alignment: Alignment.bottomCenter,
+          //   child: const Padding(
+          //     padding: EdgeInsets.all(16),
+          //     child: Text('nil'),
+          //   ),
+          // ),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context, true);
+              if (widget.finalStep) {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => MyHomePage(currentIndex: 1)),
+                    (Route<dynamic> route) => false);
+              }
             },
-            child: const Text('Next Stop'),
-          )
+            child: Text(widget.finalStep ? 'Complete' : 'Next Step'),
+          ),
         ],
       ),
     );
